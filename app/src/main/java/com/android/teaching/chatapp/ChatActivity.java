@@ -6,15 +6,20 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.Toast;
 
+
 public class ChatActivity extends AppCompatActivity {
+
+    private ChatAdapter chatAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
         displayChatMessages();
+        ListView chat = findViewById(R.id.chatList);
     }
 
     @Override

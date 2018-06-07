@@ -17,9 +17,11 @@
         android:minHeight="?android:attr/actionBarSize"
         android:theme="@style/Theme.AppCompat"
         app:title="@string/app_name"/>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/chat_recycler_view"
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:id="@+id/chatList">
+
+    </ListView>
+
 </LinearLayout>
