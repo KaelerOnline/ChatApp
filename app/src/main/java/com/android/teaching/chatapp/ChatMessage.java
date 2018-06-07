@@ -6,6 +6,11 @@ public class ChatMessage {
 
     public ChatMessage(){}
 
+    public ChatMessage(String text, String username){
+        this.text=text;
+        this.username=username;
+    }
+
     public String getText() {
         return text;
     }
