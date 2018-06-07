@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+
 public class ChatActivity extends AppCompatActivity {
 
     private ChatAdapter chatAdapter;
@@ -25,7 +26,9 @@ public class ChatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
-        displayChatMessages();
+        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.inflateMenu(R.menu.chat_menu_main);
         chat = findViewById(R.id.chatList);
         ChatFirebaseInteractor chatFirebaseInteractor = new ChatFirebaseInteractor();
         chatFirebaseInteractor.getMessages(new ChatInteractorCallback() {
@@ -62,12 +65,13 @@ public class ChatActivity extends AppCompatActivity {
     }
     public class ChatAdapter extends BaseAdapter {
 
-        private String[] text;
-        private String[] username;
+        private ChatMessage[] chatMessage = {};
+        private String[] username = {};
+        private String[] text= {};
 
         @Override
         public int getCount() {
-            return username.length;
+            return chatMessage.length;
         }
 
         @Override
@@ -88,8 +92,11 @@ public class ChatActivity extends AppCompatActivity {
             TextView textView = rowView.findViewById(R.id.userTextView);
             TextView userView = rowView.findViewById(R.id.chatUserTextView);
 
-            textView.setText(text[position]);
+            username[position]= chatMessage[position].getUsername();
+            text[position]= chatMessage[position].getText();
+
             userView.setText(username[position]);
+            textView.setText(text[position]);
 
             return rowView;
         }

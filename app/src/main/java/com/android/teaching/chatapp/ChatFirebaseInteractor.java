@@ -13,7 +13,6 @@ public class ChatFirebaseInteractor {
     private ArrayList<ChatMessage> messages = new ArrayList<>();
 
     public ChatFirebaseInteractor(){
-
     }
 
     public void getMessages(final ChatInteractorCallback callback){
