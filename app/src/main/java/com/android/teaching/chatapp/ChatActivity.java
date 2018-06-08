@@ -16,11 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-
 public class ChatActivity extends AppCompatActivity {
 
     private ChatAdapter chatAdapter;
     private ListView chat;
+    private ChatFirebaseInteractor chatFirebaseInteractor = new ChatFirebaseInteractor();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +30,17 @@ public class ChatActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.inflateMenu(R.menu.chat_menu_main);
         chat = findViewById(R.id.chatList);
-        ChatFirebaseInteractor chatFirebaseInteractor = new ChatFirebaseInteractor();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         chatFirebaseInteractor.getMessages(new ChatInteractorCallback() {
             @Override
             public void onMessagesAvailable() {
                 chatAdapter = new ChatAdapter();
                 chat.setAdapter(chatAdapter);
+                chat.setSelection(chatFirebaseInteractor.getMessages().size());
             }
         });
     }
@@ -60,18 +65,16 @@ public class ChatActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void displayChatMessages(){
 
-    }
     public class ChatAdapter extends BaseAdapter {
 
-        private ChatMessage[] chatMessage = {};
-        private String[] username = {};
-        private String[] text= {};
+        private ChatMessage chatMessage;
+        private String username;
+        private String text;
 
         @Override
         public int getCount() {
-            return chatMessage.length;
+            return chatFirebaseInteractor.getMessages().size();
         }
 
         @Override
@@ -89,14 +92,8 @@ public class ChatActivity extends AppCompatActivity {
             LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View rowView = inflater.inflate(R.layout.view_holder_item,parent,false);
 
-            TextView textView = rowView.findViewById(R.id.userTextView);
-            TextView userView = rowView.findViewById(R.id.chatUserTextView);
-
-            username[position]= chatMessage[position].getUsername();
-            text[position]= chatMessage[position].getText();
-
-            userView.setText(username[position]);
-            textView.setText(text[position]);
+            ((TextView)rowView.findViewById(R.id.userTextView)).setText(chatFirebaseInteractor.getMessages().get(position).getUsername());
+            ((TextView)rowView.findViewById(R.id.chatUserTextView)).setText(chatFirebaseInteractor.getMessages().get(position).getText());
 
             return rowView;
         }

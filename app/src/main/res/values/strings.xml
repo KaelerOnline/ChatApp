@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ChatApp</string>
+    <string name="app_name" translatable="false">ChatApp</string>
     <string name="add_message">Add Message</string>
     <string name="adding_message">Adding Message</string>
     <string name="username">Username</string>

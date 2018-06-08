@@ -17,7 +17,8 @@
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter> </activity>
-        <activity android:name=".NewMesssageActivity" android:parentActivityName=".ChatActivity"/>
+        <activity android:name=".NewMesssageActivity"
+            android:parentActivityName=".ChatActivity"/>
     </application>
 
 </manifest>

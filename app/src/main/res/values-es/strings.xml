@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name" translatable="false">ChatApp</string>
+    <string name="add_message">Añadir Mensaje</string>
+    <string name="adding_message">Añadiendo Mensaje</string>
+    <string name="username">Nombre de Usuario</string>
+    <string name="add_new_message">Añadir nuevo mensaje</string>
+    <string name="send">Enviar</string>
+</resources>
